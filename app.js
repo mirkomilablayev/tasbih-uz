@@ -44,13 +44,13 @@
   // ---------- Elements ----------
   const $ = (id) => document.getElementById(id);
   const el = {
-    zone: $("tapZone"), list: $("dhikrList"), arabic: $("arabic"), translit: $("translit"),
+    zone: $("top"), list: $("dhikrList"), arabic: $("arabic"), translit: $("translit"),
     meaning: $("meaning"), text: document.querySelector(".dhikr-text"), counter: $("counterBtn"),
     ring: $("ringFg"), count: $("count"), targetLabel: $("targetLabel"), rounds: $("rounds"),
     total: $("totalCount"), targets: $("targets"), vibrate: $("vibrateBtn"), sound: $("soundBtn"),
     reset: $("resetBtn"), modal: $("modal"), resetCurrent: $("resetCurrent"), resetAll: $("resetAll"),
     cancel: $("cancelReset"), toast: $("toast"), track: $("beadTrack"), stars: $("stars"),
-    about: $("about"), infoBtn: $("infoBtn"), closeAbout: $("closeAbout"),
+    about: $("about"), infoBtn: $("infoBtn"),
   };
 
   // Google Analytics event (no-op until GA is configured in index.html)
@@ -249,15 +249,24 @@
 
   // ---------- Events ----------
   // Tap anywhere on the page (except controls) to count
+  // Mouse counts on press; touch counts on release so a scroll swipe never counts.
+  let pending = null;
   el.zone.addEventListener("pointerdown", (e) => {
     if (e.button !== 0) return;
     if (e.target.closest("[data-no-count]")) return;
     if (e.target.closest(".counter")) el.counter.classList.add("press");
-    increment(e.clientX, e.clientY);
+    if (e.pointerType === "mouse") increment(e.clientX, e.clientY);
+    else pending = { id: e.pointerId, x: e.clientX, y: e.clientY };
+  });
+  el.zone.addEventListener("pointerup", (e) => {
+    if (!pending || pending.id !== e.pointerId) return;
+    const moved = Math.hypot(e.clientX - pending.x, e.clientY - pending.y);
+    pending = null;
+    if (moved < 12) increment(e.clientX, e.clientY);
   });
   const release = () => el.counter.classList.remove("press");
   window.addEventListener("pointerup", release);
-  window.addEventListener("pointercancel", release);
+  window.addEventListener("pointercancel", () => { pending = null; release(); });
   // Keep the counter button from also firing on keyboard "click"
   el.counter.addEventListener("click", (e) => e.preventDefault());
 
@@ -298,9 +307,10 @@
   el.resetCurrent.onclick = () => doReset(false);
   el.resetAll.onclick = () => doReset(true);
   el.modal.addEventListener("click", (e) => { if (e.target === el.modal) openModal(false); });
-  el.infoBtn.onclick = () => { openModal(true, el.about); track("about_open"); };
-  el.closeAbout.onclick = () => openModal(false, el.about);
-  el.about.addEventListener("click", (e) => { if (e.target === el.about) openModal(false, el.about); });
+  el.infoBtn.onclick = () => {
+    el.about.scrollIntoView({ behavior: "smooth" });
+    track("about_open");
+  };
   $("year").textContent = new Date().getFullYear();
 
   // ---------- Stars ----------

@@ -11,15 +11,13 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
-html, body { height: 100%; }
+html { scroll-behavior: smooth; }
 
 body {
   font-family: "Outfit", system-ui, sans-serif;
   color: var(--ink);
   background: #1a1206;
-  overflow: hidden;
-  user-select: none;
-  -webkit-user-select: none;
+  overflow-x: hidden;
 }
 
 /* ---------- Background ---------- */
@@ -65,6 +63,9 @@ body {
   align-items: center;
   gap: clamp(8px, 2vh, 18px);
   cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
   animation: fadeUp 0.8s ease both;
 }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } }
@@ -429,17 +430,43 @@ kbd {
 .brand b { font-weight: 300; }
 .top-right { display: flex; align-items: center; gap: 8px; }
 .info-btn { width: 40px; height: 40px; font-family: Georgia, serif; font-style: italic; font-weight: 700; color: var(--gold-soft); }
-.footer { font-size: 0.72rem; color: var(--muted); text-align: center; margin-top: -6px; cursor: default; }
-.footer a { color: var(--gold-soft); text-decoration: none; }
-.footer a:hover { text-decoration: underline; }
-.about-card { max-width: 440px; max-height: 85dvh; overflow-y: auto; text-align: left; user-select: text; -webkit-user-select: text; }
-.about-card h2 { font-size: 1.3rem; color: var(--gold-soft); margin-bottom: 8px; }
-.about-card h3 { font-size: 1rem; color: var(--gold-soft); margin-top: 14px; }
-.about-card p, .about-card li { color: var(--muted); font-size: 0.9rem; line-height: 1.55; }
-.about-card p { margin: 6px 0 0; }
-.about-card ul { padding-left: 18px; margin-top: 6px; }
-.about-card a { color: var(--gold-soft); }
-.about-card .btn-gold {
-  width: 100%; margin-top: 18px; padding: 11px; border: none; border-radius: 12px;
-  font: inherit; font-weight: 600; cursor: pointer;
+.scroll-hint {
+  font-size: 0.75rem;
+  color: var(--gold-soft);
+  text-decoration: none;
+  margin-top: -6px;
+  animation: nudge 2.4s ease-in-out infinite;
 }
+@keyframes nudge { 50% { transform: translateY(3px); opacity: 0.7; } }
+
+/* ---------- Content section (below the tasbih) ---------- */
+.content {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 16px max(32px, env(safe-area-inset-bottom));
+  display: grid;
+  gap: 16px;
+  line-height: 1.6;
+}
+.content section {
+  background: rgba(20, 12, 2, 0.82);
+  border: 1px solid var(--glass-border);
+  border-radius: 18px;
+  padding: 20px;
+}
+.content h2 { font-size: 1.25rem; color: var(--gold-soft); margin-bottom: 10px; line-height: 1.3; }
+.content p, .content li, .content dd { color: var(--muted); font-size: 0.95rem; }
+.content p + p { margin-top: 10px; }
+.content strong { color: var(--ink); font-weight: 600; }
+.content ol { padding-left: 20px; display: grid; gap: 6px; }
+.content a { color: var(--gold-soft); }
+.dhikr-table { display: grid; gap: 4px; margin-bottom: 12px; }
+.dhikr-table dt { font-weight: 600; color: var(--ink); margin-top: 8px; }
+.dhikr-table dt span { font-family: "Amiri", serif; color: var(--gold-soft); margin-left: 8px; font-size: 1.1rem; }
+.content details { border-top: 1px solid var(--glass-border); padding: 10px 0; }
+.content details:first-of-type { border-top: none; }
+.content summary { cursor: pointer; font-weight: 600; color: var(--ink); }
+.content summary::marker { color: var(--gold); }
+.content details p { margin-top: 6px; }
+.content-footer { text-align: center; font-size: 0.85rem; color: var(--muted); display: grid; gap: 4px; padding-top: 8px; }
+.content-footer a { text-decoration: none; }
