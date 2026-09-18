@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="70%">
+      <stop offset="0" stop-color="#6b4510"/>
+      <stop offset="1" stop-color="#1a1206"/>
+    </radialGradient>
+    <radialGradient id="bead" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#fff0c8"/>
+      <stop offset="0.45" stop-color="#f2b544"/>
+      <stop offset="1" stop-color="#9a5f12"/>
+    </radialGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <circle cx="256" cy="236" r="140" fill="none" stroke="#f2b544" stroke-opacity=".45" stroke-width="4"/>
+  <g fill="url(#bead)">
+    <circle cx="256" cy="96" r="24"/>
+    <circle cx="326" cy="115" r="24"/>
+    <circle cx="377" cy="166" r="24"/>
+    <circle cx="396" cy="236" r="24"/>
+    <circle cx="377" cy="306" r="24"/>
+    <circle cx="326" cy="357" r="24"/>
+    <circle cx="186" cy="357" r="24"/>
+    <circle cx="135" cy="306" r="24"/>
+    <circle cx="116" cy="236" r="24"/>
+    <circle cx="135" cy="166" r="24"/>
+    <circle cx="186" cy="115" r="24"/>
+    <path d="M256 360 l-18 16 v34 h36 v-34z"/>
+    <path d="M241 410 h30 l14 50 h-58z"/>
+  </g>
+  <path d="M282 196a48 48 0 1 0 0 80a40 40 0 1 1 0-80z" fill="#ffd88a"/>
+</svg>

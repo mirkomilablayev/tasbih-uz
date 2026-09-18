@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <title>Onlayn tasbeh — zikr sanagich | Tasbih.uz</title>
+  <meta name="description" content="Tasbih.uz — bepul onlayn tasbeh. Subhanalloh, Alhamdulillah, Allohu Akbar va boshqa zikrlarni sanang. Natija telefoningizda avtomatik saqlanadi." />
+  <meta name="keywords" content="tasbeh, tasbih, onlayn tasbeh, elektron tasbeh, zikr, zikr sanagich, subhanalloh, alhamdulillah, allohu akbar, astag'firulloh, salovat, тасбих, электронные четки" />
+  <meta name="author" content="Mirkomil Ablayev" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="https://tasbih.uz/" />
+  <meta name="theme-color" content="#1a1206" />
+
+  <!-- Google Search Console: only needed if you verify with the "HTML tag" method (see GUIDE.md) -->
+  <!-- <meta name="google-site-verification" content="PASTE_CODE_HERE" /> -->
+
+  <!-- Open Graph (Telegram, Facebook, WhatsApp previews) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Tasbih.uz" />
+  <meta property="og:locale" content="uz_UZ" />
+  <meta property="og:url" content="https://tasbih.uz/" />
+  <meta property="og:title" content="Tasbih.uz — Onlayn tasbeh" />
+  <meta property="og:description" content="Bepul onlayn tasbeh: zikrlaringizni sanang, natija avtomatik saqlanadi." />
+  <meta property="og:image" content="https://tasbih.uz/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Tasbih.uz — onlayn tasbeh" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Tasbih.uz — Onlayn tasbeh" />
+  <meta name="twitter:description" content="Bepul onlayn tasbeh: zikrlaringizni sanang, natija avtomatik saqlanadi." />
+  <meta name="twitter:image" content="https://tasbih.uz/og-image.png" />
+
+  <!-- Icons & install as app -->
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Tasbih" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <!-- Structured data for Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Tasbih.uz",
+    "alternateName": "Onlayn tasbeh",
+    "url": "https://tasbih.uz/",
+    "description": "Bepul onlayn tasbeh — zikrlarni sanash uchun. Natija qurilmada avtomatik saqlanadi.",
+    "applicationCategory": "LifestyleApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "uz",
+    "image": "https://tasbih.uz/og-image.png",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "UZS" },
+    "author": {
+      "@type": "Person",
+      "name": "Mirkomil Ablayev",
+      "url": "https://telegram.me/mirkomil_ablayev"
+    }
+  }
+  </script>
+
+  <!-- Google Analytics 4: replace G-XXXXXXXXXX with your Measurement ID (see GUIDE.md) -->
+  <script>
+    window.GA_ID = "G-XXXXXXXXXX";
+    if (!/X{4}/.test(GA_ID) && location.hostname !== "localhost") {
+      var s = document.createElement("script");
+      s.async = true;
+      s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { dataLayer.push(arguments); };
+      gtag("js", new Date());
+      gtag("config", GA_ID);
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg" aria-hidden="true"></div>
+  <div class="bg-overlay" aria-hidden="true"></div>
+  <div class="stars" id="stars" aria-hidden="true"></div>
+
+  <!-- The whole screen is a tap zone: tapping anywhere counts -->
+  <main class="app" id="tapZone">
+    <h1 class="sr-only">Onlayn tasbeh — Tasbih.uz</h1>
+    <header class="top" data-no-count>
+      <a class="brand" href="/"><img src="/icon.svg" alt="" width="28" height="28" /> <b><span>tasbih</span>.uz</b></a>
+      <div class="top-right">
+        <button class="icon-btn info-btn" id="infoBtn" title="Sayt haqida" aria-label="Sayt haqida">i</button>
+        <div class="total" title="Jami zikrlar">
+          <small>Jami</small>
+          <strong id="totalCount">0</strong>
+        </div>
+      </div>
+    </header>
+
+    <nav class="dhikr-list" id="dhikrList" data-no-count></nav>
+
+    <section class="dhikr-text">
+      <p class="arabic" id="arabic"></p>
+      <p class="translit" id="translit"></p>
+      <p class="meaning" id="meaning"></p>
+    </section>
+
+    <section class="counter-wrap">
+      <button class="counter" id="counterBtn" aria-label="Sanash">
+        <svg class="ring" viewBox="0 0 200 200" aria-hidden="true">
+          <circle class="ring-bg" cx="100" cy="100" r="90" />
+          <circle class="ring-fg" id="ringFg" cx="100" cy="100" r="90" />
+        </svg>
+        <span class="count" id="count">0</span>
+        <span class="target" id="targetLabel">/ 33</span>
+        <span class="rounds" id="rounds">0 marta</span>
+      </button>
+    </section>
+
+    <div class="beads" aria-hidden="true">
+      <div class="bead-track" id="beadTrack"></div>
+    </div>
+
+    <section class="controls" data-no-count>
+      <div class="targets" id="targets">
+        <button data-target="33">33</button>
+        <button data-target="99">99</button>
+        <button data-target="100">100</button>
+        <button data-target="0">∞</button>
+      </div>
+      <div class="actions">
+        <button class="icon-btn" id="vibrateBtn" title="Tebranish">📳</button>
+        <button class="icon-btn" id="soundBtn" title="Ovoz">🔔</button>
+        <button class="reset-btn" id="resetBtn">↺ Qayta boshlash</button>
+      </div>
+    </section>
+
+    <p class="hint">Ekranning istalgan joyiga bosing · <kbd>Space</kbd></p>
+    <footer class="footer" data-no-count>
+      © <span id="year">2026</span> <a href="https://telegram.me/mirkomil_ablayev" target="_blank" rel="noopener">Mirkomil Ablayev</a>
+      · <a href="https://telegram.me/mirkomil_ablayev" target="_blank" rel="noopener">Telegram</a>
+    </footer>
+  </main>
+
+  <!-- About (also gives search engines real text to index) -->
+  <div class="modal" id="about" data-no-count aria-hidden="true">
+    <article class="modal-card about-card">
+      <h2>Tasbih.uz — onlayn tasbeh</h2>
+      <p>
+        Tasbih.uz — zikrlarni sanash uchun bepul onlayn tasbeh. Telefon, planshet yoki
+        kompyuterda ishlaydi, hech narsa o'rnatish shart emas. Natijangiz qurilmangizda
+        avtomatik saqlanadi — sahifani yopsangiz ham yo'qolmaydi.
+      </p>
+      <h3>Qanday foydalaniladi?</h3>
+      <ul>
+        <li>Zikrni tanlang: Subhanalloh, Alhamdulillah, Allohu Akbar, La ilaha illalloh, Astag'firulloh yoki Salavot.</li>
+        <li>Maqsadni belgilang: 33, 99, 100 yoki cheksiz.</li>
+        <li>Ekranning istalgan joyiga bosing yoki klaviaturada <kbd>Space</kbd> tugmasini bosing.</li>
+        <li>Har bir zikr uchun hisob alohida saqlanadi. «Qayta boshlash» bilan nolga tushiring.</li>
+      </ul>
+      <h3>Muallif</h3>
+      <p>
+        Mirkomil Ablayev ·
+        <a href="https://telegram.me/mirkomil_ablayev" target="_blank" rel="noopener">Telegram: @mirkomil_ablayev</a>
+      </p>
+      <button id="closeAbout" class="btn-gold">Yopish</button>
+    </article>
+  </div>
+
+  <!-- Reset confirmation -->
+  <div class="modal" id="modal" data-no-count aria-hidden="true">
+    <div class="modal-card">
+      <h3>Qayta boshlash</h3>
+      <p>Qaysi natijani nolga tushirmoqchisiz?</p>
+      <div class="modal-actions">
+        <button id="resetCurrent" class="btn-gold">Joriy zikr</button>
+        <button id="resetAll" class="btn-danger">Hammasini</button>
+        <button id="cancelReset" class="btn-ghost">Bekor qilish</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

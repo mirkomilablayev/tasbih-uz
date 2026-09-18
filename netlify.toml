@@ -1,0 +1,50 @@
+[build]
+  publish = "."
+
+# Always use https://tasbih.uz (no www, no netlify.app duplicate for Google)
+[[redirects]]
+  from = "https://www.tasbih.uz/*"
+  to = "https://tasbih.uz/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://tasbih-uz.netlify.app/*"
+  to = "https://tasbih.uz/:splat"
+  status = 301
+  force = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/manifest.webmanifest"
+  [headers.values]
+    Content-Type = "application/manifest+json"
+
+# Repo-only docs: don't publish them
+[[redirects]]
+  from = "/GUIDE.md"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/README.md"
+  to = "/404.html"
+  status = 404
+  force = true
