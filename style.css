@@ -26,10 +26,7 @@ body {
 .bg {
   position: fixed;
   inset: -4%;
-  /* Fallback gradient shows if background.jpg is missing */
-  background:
-    url("background.jpg") center 60% / cover no-repeat,
-    linear-gradient(180deg, #5a3a0c 0%, #c98a1c 55%, #7a4a0a 80%, #140c02 100%);
+  background: linear-gradient(180deg, #5a3a0c 0%, #c98a1c 55%, #7a4a0a 80%, #140c02 100%);
   animation: kenburns 40s ease-in-out infinite alternate;
   z-index: -3;
 }

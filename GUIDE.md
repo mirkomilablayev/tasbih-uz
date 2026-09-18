@@ -6,14 +6,12 @@ Do the steps in order. Each one takes about 5–15 minutes.
 
 ## 0. Before you deploy
 
-1. Save the mosque photo into this folder as **`background.jpg`** (next to `index.html`).
-   Tip: compress it first at https://squoosh.app (aim for under 300 KB) so the site loads fast.
-2. Leave the **`.claude`** folder out when you upload. It's only for local preview.
+1. Leave the **`.claude`** folder out when you upload. It's only for local preview.
 
 Files that must be uploaded:
 
 ```
-index.html  style.css  app.js  background.jpg  404.html
+index.html  style.css  app.js  404.html
 icon.svg  icon-192.png  icon-512.png  apple-touch-icon.png  favicon-32.png
 og-image.png  manifest.webmanifest  robots.txt  sitemap.xml  netlify.toml
 ```
